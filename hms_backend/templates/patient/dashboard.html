@@ -1,0 +1,20 @@
+<h2>Patient Dashboard</h2>
+
+<h3>Available Appointments</h3>
+
+{% if slots %}
+<ul>
+{% for slot in slots %}
+<li>
+Dr. {{slot.doctor.username}} |
+{{slot.date}} |
+{{slot.start_time}} - {{slot.end_time}}
+
+<a href="{% url 'book_slot' slot.id %}">Book</a>
+</li>
+{% endfor %}
+</ul>
+
+{% else %}
+<p>No available appointments.</p>
+{% endif %}

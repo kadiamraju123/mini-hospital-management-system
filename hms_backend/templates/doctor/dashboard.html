@@ -1,0 +1,41 @@
+<h2>Doctor Dashboard</h2>
+
+<h3>Create Availability Slot</h3>
+
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Add Slot</button>
+</form>
+
+<hr>
+
+<h3>Your Slots</h3>
+
+<ul>
+{% for slot in slots %}
+<li>
+{{slot.date}} | {{slot.start_time}} - {{slot.end_time}}
+
+{% if slot.is_booked %}
+ - Booked
+{% else %}
+ - Available
+{% endif %}
+
+</li>
+{% endfor %}
+</ul>
+<hr>
+
+<h3>Booked Appointments</h3>
+
+<ul>
+{% for appt in appointments %}
+<li>
+Patient: {{ appt.patient.username }} |
+{{ appt.slot.date }} |
+{{ appt.slot.start_time }} - {{ appt.slot.end_time }}
+</li>
+{% endfor %}
+</ul>
